@@ -1,0 +1,5 @@
+{
+  "name": "GitHub Project Explorer",
+  "description": "A dashboard to explore trending GitHub repositories with advanced filters, analytics, and bookmarking capabilities.",
+  "requestFramePermissions": []
+}
