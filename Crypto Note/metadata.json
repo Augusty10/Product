@@ -1,0 +1,5 @@
+{
+  "name": "CryptNote",
+  "description": "A privacy-focused, offline-first notes app with client-side AES encryption.",
+  "requestFramePermissions": []
+}
