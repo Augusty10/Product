@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "Post": {
+      "title": "Post",
+      "description": "A blog post document.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the post."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly version of the title."
+        },
+        "content": {
+          "type": "string",
+          "description": "The rich text content of the post."
+        },
+        "excerpt": {
+          "type": "string",
+          "description": "A short summary of the post."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "The UID of the user who created the post."
+        },
+        "authorName": {
+          "type": "string",
+          "description": "The display name of the author."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "published"],
+          "description": "The publication status of the post."
+        },
+        "categoryId": {
+          "type": "string",
+          "description": "The ID of the category this post belongs to."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the post was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the post was last updated."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the post was published."
+        }
+      },
+      "required": ["title", "slug", "content", "authorId", "status", "createdAt", "updatedAt"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "A category for blog posts.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the category."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly version of the category name."
+        }
+      },
+      "required": ["name", "slug"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A user profile document.",
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "editor"],
+          "description": "The user's role in the CMS."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "The user's profile photo URL."
+        }
+      },
+      "required": ["displayName", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Collection of blog posts."
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Collection of blog categories."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles."
+    }
+  }
+}

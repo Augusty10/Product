@@ -1,0 +1,5 @@
+{
+  "name": "Lumina CMS",
+  "description": "A modern headless CMS for blog publishing with a rich text editor, admin panel, and dynamic frontend.",
+  "requestFramePermissions": []
+}
