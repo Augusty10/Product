@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user profile information, including display name and online status.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The user's unique ID from Firebase Auth." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "photoURL": { "type": "string", "description": "The user's profile photo URL." },
+        "isOnline": { "type": "boolean", "description": "Whether the user is currently online." },
+        "lastSeen": { "type": "string", "format": "date-time", "description": "The last time the user was active." }
+      },
+      "required": ["uid", "displayName"]
+    },
+    "Message": {
+      "title": "Chat Message",
+      "description": "Represents a message sent in a room or private chat.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique message ID." },
+        "senderId": { "type": "string", "description": "The UID of the sender." },
+        "senderName": { "type": "string", "description": "The display name of the sender." },
+        "text": { "type": "string", "description": "The content of the message." },
+        "roomId": { "type": "string", "description": "The ID of the room (or 'private:uid1:uid2' for private chats)." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the message was sent." }
+      },
+      "required": ["senderId", "text", "roomId", "createdAt"]
+    },
+    "Room": {
+      "title": "Chat Room",
+      "description": "Represents a group chat room.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique room ID." },
+        "name": { "type": "string", "description": "The name of the room." },
+        "description": { "type": "string", "description": "A brief description of the room." },
+        "createdBy": { "type": "string", "description": "The UID of the user who created the room." }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents."
+    },
+    "/rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Chat room documents."
+    },
+    "/rooms/{roomId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a specific room."
+    },
+    "/private_chats/{chatId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages in private chats. chatId is typically 'uid1_uid2' sorted alphabetically."
+    }
+  }
+}

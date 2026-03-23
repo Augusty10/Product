@@ -1,0 +1,5 @@
+{
+  "name": "Nexus Chat",
+  "description": "A secure, real-time chat platform featuring rooms, private messaging, and persistent history powered by Socket.IO and Firebase.",
+  "requestFramePermissions": []
+}
